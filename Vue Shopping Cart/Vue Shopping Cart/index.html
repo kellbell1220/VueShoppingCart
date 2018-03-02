@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Kelli's Archery</title>
+			<!--
+			Kelli's Place
+			Filename: cart.html
+
+			Author: Kelli Stasiak
+			Date: 11/26/2017
+      -->
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+
+			<!-- Bootstrap CDNs -->
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+			<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+			<!-- CSS Links  -->
+			<link rel="stylesheet" href="styles.css">
+
+			<!-- Font Links  -->
+			<link href="https://fonts.googleapis.com/css?family=Rye" rel="stylesheet">
+			<link href="https://fonts.googleapis.com/css?family=Fugaz+One" rel="stylesheet">
+
+      <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+	</head>
+  <body>
+	 	<div id ="app">
+	  	<header class="container-fluid">
+	        <h1>Kelli's Archery Supply</h1>
+
+
+	  			<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-on:click="emptyCartSyndrome(cartItem)" >
+	          <span class="glyphicon glyphicon-shopping-cart"></span> Checkout: {{cartItem}}
+	  			</button>
+	  			<ul class="dropdown-menu dropdown-cart" aria-labelledby="dropdownMenuButton">
+
+						<li>
+								<span class="dropdown-item">Checkout</span>
+						</li>
+
+						<li>
+								<span class="dropdown-item" v-if ="empty">
+									  <span>Your Cart is Empty</span>
+								</span>
+						</li>
+						<li>
+								<span class="dropdown-item" v-if="full">
+										<button v-on:click="removeThis(item)">X</button>
+										<img v-bind:src="item.imgSrc">
+										<span>{{item.name}}</span>
+										<span>${{item.price}}</span>
+										<div id="totals"></div>
+								</span>
+						</li>
+	  			</ul>
+	  	</header>
+
+			<div class = "row">
+				<div id ="printItems" class="col-xs-3 col-md-2" v-for="item in items">
+	        <p>{{item.name}}</p>
+					<p>
+					<img v-bind:src="item.imgSrc" v-on:click="itemSelect(item.name)">
+					</p>
+					<p>Qty: {{item.qty}}</p>
+	        <p>${{item.price}}</p>
+					<p>{{item.description}}</p>
+					<p>
+					<button v-on:click="orderThis(item)">Add to Cart</button>
+					</p>
+	      </div>
+
+				<!-- <div class= "container" id = "checkOut">
+						<span class="glyphicon glyphicon-shopping-cart" aria-didden="true"></span>
+						<h2>Checkout: {{cartItem}}</h2>
+
+					<div v-if="item.cartItem == 0">
+							<h2>Your Cart Is Empty</h2>
+					</div>
+
+					<div v-for="item in items" v-else="item.cartItem >= 1">
+							<button v-on:click="removeThis(item)">X</button>
+							<img v-bind:src="item.imgSrc">
+							<p>{{item.name}}</p>
+							<p>${{item.price}}</p>
+					</div>
+
+				</div> -->
+
+		</div>
+		<footer class="container-fluid">Kelli's Archery Supply &#8611; Conway &#8611; Missouri &#8611; 65632 &#8611; 417-555-5555</footer>
+
+    <script src = "script.js"></script>
+  </body>
+</html>
