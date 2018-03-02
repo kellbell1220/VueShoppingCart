@@ -1,2 +1,6 @@
 # VueShoppingCart
-Shopping Cart Made with Vue.js
+Shopping Cart Made With Vue.js
+
+
+
+![alt text](index.screenshot.JPG)
